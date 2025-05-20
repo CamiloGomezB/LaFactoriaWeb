@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/stylerl.css">
+  <script src="validacion.js" defer></script>
+</head>
+<body>
+
+<form action="login_script.php" method="POST" onsubmit="return validarLogin()">
+  <h2>Iniciar Sesión</h2>
+  <input type="email" name="email" id="email" placeholder="Correo">
+  <input type="password" name="password" id="password" placeholder="Contraseña">
+  <button type="submit">Ingresar</button>
+</form>
+
+</body>
+</html>
+
+

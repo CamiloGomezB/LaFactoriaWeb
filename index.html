@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>LA FACTORIA</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!----ENGRANEJE---->
+    <link rel="icon" href="img/engranaje.png" type="image/png">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5"> <!-- bg-secundary=Color del background -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center h-100">
+                    <a class="text-body mr-3" href="">Sobre nosotros</a> <!-- text-body=colore de la letra -->
+                    <a class="text-body mr-3" href="">Contactanos</a>
+                    <a class="text-body mr-3" href="">Ayuda</a>
+                    <a class="text-body mr-3" href="">FAQs</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi cuenta</button> <!-- btn-light= color borde boton --> 
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="auth/login.html">Ingresar</a>
+                            <a class="dropdown-item" href="auth/registro.html">Registrarse</a>
+                        </div>                        
+                    </div>
+                    
+                </div>
+                <div class="d-inline-flex align-items-center d-block d-lg-none">
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-heart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-shopping-cart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+            <div class="col-lg-4">
+                <a href="index.html" class="text-decoration-none">
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">La</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Factoria</span>
+                </a>
+            </div>
+            <div class="col-lg-4 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="¿Que buscas?">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-6 text-right">
+                <p class="m-0">Servicio al cliente</p>
+                <h5 class="m-0">+57 311 8936380</h5>
+            </div>
+        </div>
+    </div>
+    <!-- Final de la barra de arriba -->
+
+
+    <!-- Barra de navegacion -->
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+            <div class="col-lg-9 mx-auto"> <!-- centrado dentro de la fila -->
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0 justify-content-center ">
+                    <a href="index.html" class="text-decoration-none d-block d-lg-none">
+                        <span class="h1 text-uppercase text-dark bg-light px-2">La</span>
+                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Factoria</span>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+                        <div class="navbar-nav d-flex flex-row flex-wrap align-items-center justify-content-center w-100 text-center">
+                            <a href="shop.html" class="nav-item nav-link mx-2">Todos los productos</a>
+                            <a href="detalles.html" class="nav-item nav-link mx-2">Detalles del producto</a>
+                            <div class="nav-item dropdown mx-2">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    Detalles de compra <i class="fa fa-angle-down mt-1"></i>
+                                </a>
+                                <div class="dropdown-menu bg-primary2 rounded-0 border-0 m-0">
+                                    <a href="carrito.html" class="dropdown-item">Carrito de compra</a>
+                                    <a href="envio.html" class="dropdown-item">Detalles del lugar de envío</a>
+                                </div>
+                            </div>
+                            <a href="#" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="nav-item nav-link mx-2">Contáctanos</a>
+
+                            <!-- Íconos también centrados -->
+                            <a href="#" class="btn px-0 mx-2">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            </a>
+                            <a href="#" class="btn px-0 mx-2">
+                                <i class="fas fa-shopping-cart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final de la barra de navegacion -->
+
+
+    <!-- Carrusel -->
+    <div class="container-fluid mb-3">
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+                <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#header-carousel" data-slide-to="1"></li>
+                        <li data-target="#header-carousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item position-relative active" style="height: 430px;">
+                            <img class="position-absolute w-100 h-100" src="img/imagenG27.png" style="object-fit: cover;">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Artesanías</h1>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Madera, barro, o pintura, igual todas obras de arte</p>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Compra ahora</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item position-relative" style="height: 430px;">
+                            <img class="position-absolute w-100 h-100" src="img/PulseraMopa.png" style="object-fit: cover;">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Ropa y accesorios</h1>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Vestimentas y artículos vistosos de todo tipo</p>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Compra ahora</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item position-relative" style="height: 430px;">
+                            <img class="position-absolute w-100 h-100" src="img/TejidoEnLana.png" style="object-fit: cover;">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Tejidos hechos a mano</h1>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Hechos con las tecnicas más ancestrales de nuestra cultura</p>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Compra ahora</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="product-offer mb-30" style="height: 200px;">
+                    <img class="img-fluid" src="img/MochilaWayuu.png" alt="">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">Accesorios</h6>
+                        <h3 class="text-white mb-3">Super oferta 1% de descuento</h3>
+                        <a href="" class="btn btn-primary">Compra ahora</a>
+                    </div>
+                    <!-- Bordes animados -->
+                    <div class="animated-border top"></div>
+                    <div class="animated-border right"></div>
+                    <div class="animated-border bottom"></div>
+                    <div class="animated-border left"></div>
+                </div>
+                <div class="product-offer mb-30" style="height: 200px;">
+                    <img class="img-fluid" src="img/imagenG26.png" alt="">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">Nuevo</h6>
+                        <h3 class="text-white mb-3">Nuevos productos</h3>
+                        <a href="" class="btn btn-primary">Compra ahora</a>
+                    </div>                 
+                    <!-- Bordes animados -->
+                    <div class="animated-border top"></div>
+                    <div class="animated-border right"></div>
+                    <div class="animated-border bottom"></div>
+                    <div class="animated-border left"></div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <!-- Fin del carrusel -->
+ 
+
+    <!-- Caracteristicas -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Productos de calidad</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Entrega rapida</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Execelente atencion al cliente</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Estamos siemmpre atentos</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Caracteristicas -->
+
+
+    <!-- Categories Start -->
+    <div class="container-fluid pt-5">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary2 pr-3">Categorias</span></h2>
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <a class="text-decoration-none" href="">
+                    <div class="cat-item d-flex align-items-center mb-4">
+                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                            <img class="img-fluid" src="img/MacetasTejidas.png" alt="">
+                        </div>
+                        <div class="flex-fill pl-3">
+                            <h6>Decoración</h6>
+                            <small class="text-body">+100 productos</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <a class="text-decoration-none" href="">
+                    <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                            <img class="img-fluid" src="img/TejidoDePaja.png" alt="">
+                        </div>
+                        <div class="flex-fill pl-3">
+                            <h6>Artículos de Uso doméstico</h6>
+                            <small class="text-body">+100 Productos</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <a class="text-decoration-none" href="">
+                    <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
+<<<<<<<<< Temporary merge branch 1
+                            <img class="img-fluid" src="img/PulseraMopa.png" alt="">
+=========
+<<<<<<< HEAD
+                            <img class="img-fluid" src="img/imagenG26.png" alt="">
+
+                            <img class="img-fluid" src="img/PulseraMopa.png" alt="">
+>>>>>>> cf2445d413455f3c30b29ef3ee898c600581bc53
+>>>>>>>>> Temporary merge branch 2
+                        </div>
+                        <div class="flex-fill pl-3">
+                            <h6>Piezas culturales</h6>
+                            <small class="text-body">+100 Productos</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <a class="text-decoration-none" href="">
+                    <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                            <img class="img-fluid" src="img/MochilaWayuu.png" alt="">
+                        </div>
+                        <div class="flex-fill pl-3">
+                            <h6>Mochilas y bolsas</h6>
+                            <small class="text-body">+100 Productos</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Categorias FIn-->
+
+    <!-- Vendorres Start -->
+    <div class="container-fluid py-5">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary2 pr-3">Vendedores</span></h2>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel vendor-carousel">
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-1.png" alt="">
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-2.png" alt="" >
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-4.png" alt="">
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-5.png" alt="">
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-6.png" alt="">
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-7.png" alt="">
+                        </a>
+                    </div>
+                    <div class="polaroid">
+                        <a href="vendedores.html">
+                            <img src="img/vendor-8.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendores FIn -->
+
+<!-- WAWAWAWA FIn -->
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-secondary text-uppercase mb-4">Contactanos</h5>
+            <p class="mb-4">Somos una linda comunidad de artesanos que esperan poder llevar felicidad a la vida de nuestros compradores</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Estamos en sopo</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>wawaw@lafacotorua.sopo</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+57 311 8936380</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Nuestras redes</h5>
+                    <p>Estas son nuestras redess sociales</p>
+                    
+                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Siguenos!!!!</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-8 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Ubicación</h5>
+                    <p>Nos puedes encontrar en la Plaza de Artesanos Arte Sopó:</p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2033.7715038893455!2d-73.9409773007455!3d4.907783338142566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e40768162e31d9b%3A0x3b2d5844e4255f45!2sPlaza%20de%20Artesanos%20Arte%20Sop%C3%B3!5e1!3m2!1ses-419!2sco!4v1747167432254!5m2!1ses-419!2sco" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: 8px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+        
+
+    </div>
+    
+    <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="col-md-6 px-xl-0">
+            <p class="mb-md-0 text-center text-md-left text-secondary">
+                &copy; <a class="text-primary" href="#">Domain</a>. Diseñado por
+                <a class="text-primary" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Espichame</a>
+            </p>
+        </div>
+        <div class="col-md-6 px-xl-0 text-center text-md-right">
+            <img class="img-fluid" src="img/payments.png" alt="">
+        </div>
+    </div>
+</div>
+    <!-- Footer End -->
+
+
+    <!-- BOTON REGRESO AL TOP -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
