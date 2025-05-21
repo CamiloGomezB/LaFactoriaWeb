@@ -2544,13 +2544,13 @@ fieldset:disabled a.btn {
 .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
 .show > .btn-warning.dropdown-toggle {
   color: #212529;
-  background-color: #d39e00;
-  border-color: #c69500;
+  background-color: #ce394a;
+  border-color: #db4a5b;
 }
 
 .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled).active:focus,
 .show > .btn-warning.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(247, 55, 79);
 }
 
 .btn-danger {
@@ -2687,13 +2687,13 @@ fieldset:disabled a.btn {
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #212529;
-  background-color: #FFD333;
-  border-color: #FFD333;
+  background-color: #be3747;
+  border-color: #db4a5b;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 211, 51, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(247, 55, 79);
 }
 
 .btn-outline-secondary {
@@ -2815,8 +2815,8 @@ fieldset:disabled a.btn {
 .btn-outline-warning:not(:disabled):not(.disabled):active, .btn-outline-warning:not(:disabled):not(.disabled).active,
 .show > .btn-outline-warning.dropdown-toggle {
   color: #212529;
-  background-color: #ffc107;
-  border-color: #ffc107;
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
 
 .btn-outline-warning:not(:disabled):not(.disabled):active:focus, .btn-outline-warning:not(:disabled):not(.disabled).active:focus,
@@ -3219,7 +3219,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #FFD333;
+  background-color: #db4a5b;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -9285,7 +9285,7 @@ button.bg-dark:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #e6b400 !important;
+  color: #db4a5b !important;
 }
 
 .text-secondary {
