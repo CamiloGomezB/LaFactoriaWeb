@@ -2544,13 +2544,13 @@ fieldset:disabled a.btn {
 .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
 .show > .btn-warning.dropdown-toggle {
   color: #212529;
-  background-color: #d39e00;
-  border-color: #c69500;
+  background-color: #ce394a;
+  border-color: #db4a5b;
 }
 
 .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled).active:focus,
 .show > .btn-warning.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(247, 55, 79);
 }
 
 .btn-danger {
@@ -2687,13 +2687,13 @@ fieldset:disabled a.btn {
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #212529;
-  background-color: #FFD333;
-  border-color: #FFD333;
+  background-color: #be3747;
+  border-color: #db4a5b;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 211, 51, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(247, 55, 79);
 }
 
 .btn-outline-secondary {
@@ -2815,8 +2815,8 @@ fieldset:disabled a.btn {
 .btn-outline-warning:not(:disabled):not(.disabled):active, .btn-outline-warning:not(:disabled):not(.disabled).active,
 .show > .btn-outline-warning.dropdown-toggle {
   color: #212529;
-  background-color: #ffc107;
-  border-color: #ffc107;
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
 
 .btn-outline-warning:not(:disabled):not(.disabled):active:focus, .btn-outline-warning:not(:disabled):not(.disabled).active:focus,
@@ -3219,7 +3219,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #FFD333;
+  background-color: #db4a5b;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -9285,7 +9285,7 @@ button.bg-dark:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #e6b400 !important;
+  color: #db4a5b !important;
 }
 
 .text-secondary {
@@ -9346,7 +9346,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-body {
-  color: #FEF3E2!important;
+  color: #F5F5F5!important;
 }
 
 .text-muted {
@@ -9842,6 +9842,83 @@ a.text-dark:hover, a.text-dark:focus {
   transform: scale(1.03);
 }
 
+/* Circulos giratorios */
+
+.decorative-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+.gear {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Engranaje exterior */
+.decorative-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+/* Base común */
+.gear {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  border-radius: 50%;
+  /* Ajusta overflow si necesitas */
+}
+
+/* Engranaje exterior */
+.decorative-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+.gear {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  animation: spin 8s linear infinite;
+  
+  /* 1) Cuerpo y agujero central */
+  background:
+    radial-gradient(circle at center,
+      #424242 0%,      /* relleno del disco */
+      #424242 60%,     /* radio interior */
+      transparent 61%  /* agujero */
+    ) no-repeat center/100% 100%,
+  /* 2) Corona de dientes: 16 dientes (11.25° de ancho cada uno) */
+    repeating-conic-gradient(
+      #424242 0deg   11.25deg,   /* diente */
+      transparent 11.25deg 22.5deg /* espacio */
+    ) no-repeat center/100% 100%;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+
+/* Animación de acción */
 @keyframes action {
   0% {
     transform: translateY(0);
