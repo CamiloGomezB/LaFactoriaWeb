@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>LA FACTORIA</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!----ENGRANEJE---->
+    <link rel="icon" href="img/engranaje.png" type="image/png">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5"> <!-- bg-secundary=Color del background -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center h-100">
+                    <a class="text-body mr-3" href="">Sobre nosotros</a> <!-- text-body=colore de la letra -->
+                    <a class="text-body mr-3" href="">Contactanos</a>
+                    <a class="text-body mr-3" href="">Ayuda</a>
+                    <a class="text-body mr-3" href="">FAQs</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi cuenta</button> <!-- btn-light= color borde boton --> 
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="auth/login.html">Ingresar</a>
+                            <a class="dropdown-item" href="auth/registro.html">Registrarse</a>
+                        </div>                        
+                    </div>
+                    
+                </div>
+                <div class="d-inline-flex align-items-center d-block d-lg-none">
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-heart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-shopping-cart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+            <div class="col-lg-4">
+                <a href="index.html" class="text-decoration-none">
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">La</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Factoria</span>
+                </a>
+            </div>
+            <div class="col-lg-4 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="¿Que buscas?">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-6 text-right">
+                <p class="m-0">Servicio al cliente</p>
+                <h5 class="m-0">+57 311 8936380</h5>
+            </div>
+        </div>
+    </div>
+    <!-- Final de la barra de arriba -->
+
+    <!-- Barra de navegacion -->
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+            <div class="col-lg-9 mx-auto"> <!-- centrado dentro de la fila -->
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0 justify-content-center ">
+                    <a href="index.html" class="text-decoration-none d-block d-lg-none">
+                        <span class="h1 text-uppercase text-dark bg-light px-2">La</span>
+                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Factoria</span>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+                        <div class="navbar-nav d-flex flex-row flex-wrap align-items-center justify-content-center w-100 text-center">
+                            <a href="shop.html" class="nav-item nav-link mx-2">Todos los productos</a>
+                            <a href="detalles.html" class="nav-item nav-link mx-2">Detalles del producto</a>
+                            <div class="nav-item dropdown mx-2">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    Detalles de compra <i class="fa fa-angle-down mt-1"></i>
+                                </a>
+                                <div class="dropdown-menu bg-primary2 rounded-0 border-0 m-0">
+                                    <a href="carrito.html" class="dropdown-item">Carrito de compra</a>
+                                    <a href="envio.html" class="dropdown-item">Detalles del lugar de envío</a>
+                                </div>
+                            </div>
+                            <a href="#" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="nav-item nav-link mx-2">Contáctanos</a>
+
+                            <!-- Íconos también centrados -->
+                            <a href="#" class="btn px-0 mx-2">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            </a>
+                            <a href="#" class="btn px-0 mx-2">
+                                <i class="fas fa-shopping-cart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+        <!-- ==== INICIO NUEVAS SECCIONES DE PRODUCTOS ==== -->
+
+<!-- 1) Productos Aleatorios (Polaroids) -->
+<section id="random-section" style="position: relative; height: 600px; background: #fff;">
+  <main id="table"></main>
+</section>
+
+<!-- 2) Barra de filtros -->
+<section id="filter-section" class="py-3 px-4 bg-light">
+  <label for="catFilter" class="mr-2">Categoría:</label>
+  <select id="catFilter" class="mr-4"></select>
+  <input
+    type="text"
+    id="txtSearch"
+    placeholder="Buscar nombre o precio…"
+    style="width:200px;"
+    class="form-control d-inline-block"
+  />
+</section>
+
+<!-- 3) Carrusel simple -->
+<section id="carousel-section" class="py-4 text-center bg-white">
+  <button id="prevSlide" class="btn btn-outline-dark mx-2">&lt;</button>
+  <div id="carousel-container" style="display:inline-flex; transition:transform .4s ease;"></div>
+  <button id="nextSlide" class="btn btn-outline-dark mx-2">&gt;</button>
+</section>
+
+<!-- 4) Listado por Categorías -->
+<section id="category-section" class="px-4 py-5 bg-light">
+  <!-- Aquí se inyectarán dinámicamente las categorías -->
+</section>
+
+<!-- ==== FIN NUEVAS SECCIONES DE PRODUCTOS ==== -->
+
+
+    <!-- Footer Start -->
+<div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-secondary text-uppercase mb-4">Contactanos</h5>
+            <p class="mb-4">Somos una linda comunidad de artesanos que esperan poder llevar felicidad a la vida de nuestros compradores</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Estamos en sopo</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>wawaw@lafacotorua.sopo</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+57 311 8936380</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Nuestras redes</h5>
+                    <p>Estas son nuestras redess sociales</p>
+                    
+                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Siguenos!!!!</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-8 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Ubicación</h5>
+                    <p>Nos puedes encontrar en la Plaza de Artesanos Arte Sopó:</p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2033.7715038893455!2d-73.9409773007455!3d4.907783338142566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e40768162e31d9b%3A0x3b2d5844e4255f45!2sPlaza%20de%20Artesanos%20Arte%20Sop%C3%B3!5e1!3m2!1ses-419!2sco!4v1747167432254!5m2!1ses-419!2sco" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: 8px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+        
+
+    </div>
+    
+    <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="col-md-6 px-xl-0">
+            <p class="mb-md-0 text-center text-md-left text-secondary">
+                &copy; <a class="text-primary" href="#">Domain</a>. Diseñado por
+                <a class="text-primary" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Espichame</a>
+            </p>
+        </div>
+        <div class="col-md-6 px-xl-0 text-center text-md-right">
+            <img class="img-fluid" src="img/payments.png" alt="">
+        </div>
+    </div>
+</div>
+    <!-- Footer End -->
+
+
+    <!-- BOTON REGRESO AL TOP -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
