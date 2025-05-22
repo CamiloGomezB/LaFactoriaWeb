@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro</title>
+  <link rel="icon" href="img/engranaje.png" type="image/png">
   <link rel="stylesheet" href="css/stylerl.css">
+
   <style>
     #codigoContainer {
       display: none;
@@ -17,6 +19,8 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
 
     const firebaseConfig = {
       apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
@@ -27,6 +31,8 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
+
 
     // Códigos fijos (ocultos) para roles especiales
     const CODIGO_ADMIN = "CODIGOADMIN123456789012345";
@@ -83,6 +89,14 @@
           // Crear usuario
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           await updateProfile(userCredential.user, { displayName: nombre });
+
+          // Guardar nombre y rol en Firestore
+          await setDoc(doc(db, "usuarios", userCredential.user.uid), {
+            nombre: nombre,
+            rol: rol,
+            email: email
+          });
+
 
           alert("Usuario registrado correctamente");
           window.location.href = "login.html";
