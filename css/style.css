@@ -9853,67 +9853,49 @@ a.text-dark:hover, a.text-dark:focus {
 
 .gear {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-/* Engranaje exterior */
-.decorative-container {
-  position: relative;
+  top: 50%; left: 50%;
   width: 200px;
   height: 200px;
-  margin: auto;
-}
-
-/* Base común */
-.gear {
-  position: absolute;
-  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: spin 8s linear infinite;
+
+  /* 
+    1) Cuerpo del engranaje: radial sólido hasta 60%, luego transparente 
+    2) Corona de dientes: 16 dientes (360°/16 = 22.5°), cada diente ocupa 11.25°
+  */
+  background-image:
+    /* capa 1: tapa el interior del cuerpo + deja exterior transparente */
+    radial-gradient(circle at center,
+      #424242 0%,  /* color del cuerpo */
+      #424242 60%, /* radio interior */
+      transparent 61%, transparent 100%
+    ),
+    /* capa 2: dientes alrededor */
+    repeating-conic-gradient(
+      #424242 0deg   11.25deg,
+      transparent   11.25deg 22.5deg
+    );
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-  border-radius: 50%;
-  /* Ajusta overflow si necesitas */
 }
 
-/* Engranaje exterior */
-.decorative-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: auto;
-}
-
-.gear {
+/* Hueco central: un círculo del color de fondo */
+.gear::before {
+  content: "";
   position: absolute;
   top: 50%; left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 60%;   /* ajusta el diámetro del hueco */
+  height: 60%;
   transform: translate(-50%, -50%);
-  animation: spin 8s linear infinite;
-  
-  /* 1) Cuerpo y agujero central */
-  background:
-    radial-gradient(circle at center,
-      #424242 0%,      /* relleno del disco */
-      #424242 60%,     /* radio interior */
-      transparent 61%  /* agujero */
-    ) no-repeat center/100% 100%,
-  /* 2) Corona de dientes: 16 dientes (11.25° de ancho cada uno) */
-    repeating-conic-gradient(
-      #424242 0deg   11.25deg,   /* diente */
-      transparent 11.25deg 22.5deg /* espacio */
-    ) no-repeat center/100% 100%;
+  background: #F5F5F5;  /* color de fondo de la página */
+  border-radius: 50%;
+  z-index: 1;
 }
 
 @keyframes spin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 
