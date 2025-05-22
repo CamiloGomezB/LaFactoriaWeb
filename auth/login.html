@@ -4,18 +4,44 @@
   <meta charset="UTF-8">
   <title>Login</title>
   <link rel="stylesheet" href="css/stylerl.css">
-  <script src="validacion.js" defer></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+    authDomain: "weblafactor.firebaseapp.com",
+    projectId: "weblafactor",
+    appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert("Inicio de sesión exitoso");
+          window.location.href = "dashboard.html"; // Redirige a otra página si deseas
+        } catch (error) {
+          alert("Error: " + error.message);
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-
-<form action="login_script.php" method="POST" onsubmit="return validarLogin()">
+<form id="loginForm">
   <h2>Iniciar Sesión</h2>
-  <input type="email" name="email" id="email" placeholder="Correo">
-  <input type="password" name="password" id="password" placeholder="Contraseña">
+  <input type="email" id="email" placeholder="Correo" required>
+  <input type="password" id="password" placeholder="Contraseña" required>
   <button type="submit">Ingresar</button>
 </form>
-
 </body>
 </html>
-
-

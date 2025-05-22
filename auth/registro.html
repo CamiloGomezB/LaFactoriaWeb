@@ -4,25 +4,118 @@
   <meta charset="UTF-8">
   <title>Registro</title>
   <link rel="stylesheet" href="css/stylerl.css">
-  <script src="validacion.js" defer></script>
+  <style>
+    #codigoContainer {
+      display: none;
+    }
+    #errorMensaje {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+      authDomain: "weblafactor.firebaseapp.com",
+      projectId: "weblafactor",
+      appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Códigos fijos (ocultos) para roles especiales
+    const CODIGO_ADMIN = "CODIGOADMIN123456789012345";
+    const CODIGO_VENDEDOR = "CODIGOVENDEDOR123456789012";
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const rolSelect = document.getElementById("rol");
+      const codigoContainer = document.getElementById("codigoContainer");
+      const errorMensaje = document.getElementById("errorMensaje");
+
+      rolSelect.addEventListener("change", () => {
+        const rol = rolSelect.value;
+
+        if (rol === "admin" || rol === "vendedor") {
+          codigoContainer.style.display = "block";
+          document.getElementById("codigo").required = true;
+        } else {
+          codigoContainer.style.display = "none";
+          document.getElementById("codigo").required = false;
+        }
+      });
+
+      document.getElementById("registroForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorMensaje.style.display = "none";
+
+        const nombre = document.getElementById("nombre").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const rol = document.getElementById("rol").value;
+        const codigoIngresado = document.getElementById("codigo").value;
+
+        // Validar código si es admin o vendedor
+        if (rol === "admin" && codigoIngresado !== CODIGO_ADMIN) {
+          errorMensaje.textContent = "Código incorrecto para Administrador.";
+          errorMensaje.style.display = "block";
+          return;
+        }
+
+        if (rol === "vendedor" && codigoIngresado !== CODIGO_VENDEDOR) {
+          errorMensaje.textContent = "Código incorrecto para Vendedor.";
+          errorMensaje.style.display = "block";
+          return;
+        }
+
+        try {
+          // Hashear contraseña
+          const encoder = new TextEncoder();
+          const data = encoder.encode(password);
+          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashedPassword = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+          // Crear usuario
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(userCredential.user, { displayName: nombre });
+
+          alert("Usuario registrado correctamente");
+          window.location.href = "login.html";
+        } catch (error) {
+          if (error.code === 'auth/email-already-in-use') {
+            errorMensaje.textContent = "Este correo ya está en uso. Por favor, usa otro.";
+          } else {
+            errorMensaje.textContent = "Error: " + error.message;
+          }
+          errorMensaje.style.display = "block";
+        }
+      });
+    });
+  </script>
 </head>
 <body>
+  <form id="registroForm">
+    <h2>Registro</h2>
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="email" id="email" placeholder="Correo" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <select id="rol" required>
+      <option value="usuario">Comprador</option>
+      <option value="admin">Administrador</option>
+      <option value="vendedor">Vendedor</option>
+    </select>
 
-<form action="registro_script.php" method="POST" onsubmit="return validarRegistro()">
-  <h2>Registro</h2>
-  <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-  <input type="email" name="email" id="email" placeholder="Correo">
-  <input type="password" name="password" id="password" placeholder="Contraseña">
-  <select name="rol">
-    <option value="usuario">Usuario</option>
-    <option value="admin">Administrador</option>    
-    <option value="vendedor">Vendedor</option>
+    <div id="codigoContainer">
+      <input type="text" id="codigo" placeholder="Código único (25 caracteres)" maxlength="25">
+    </div>
 
-  </select>
-  <button type="submit">Registrarse</button>
-</form>
-
+    <button type="submit">Registrarse</button>
+    <p id="errorMensaje"></p>
+  </form>
 </body>
 </html>
-
-
