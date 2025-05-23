@@ -10116,7 +10116,7 @@ a.text-dark:hover, a.text-dark:focus {
     flex-direction: column;
   }
   .products-container {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
