@@ -90,12 +90,6 @@
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           await updateProfile(userCredential.user, { displayName: nombre });
 
-          // Guardar nombre y rol en Firestore
-          await setDoc(doc(db, "usuarios", userCredential.user.uid), {
-            nombre: nombre,
-            rol: rol,
-            email: email
-          });
           alert("Usuario registrado correctamente");
           window.location.href = "login.html";
         } catch (error) {
