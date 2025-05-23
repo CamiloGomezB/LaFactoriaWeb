@@ -101,3 +101,13 @@
     });
     
 })(jQuery);
+
+window.addEventListener('load', () => {
+  const pre = document.getElementById('preloader');
+  // Espera 5s (5000 ms) antes de hacer fade-out, esto es importante para que la carga se pueda configurar y se vean los cambios, acorde al tiempo que quiera darles
+  setTimeout(() => {
+    pre.classList.add('loaded');
+    // da el paso apenas termine la animación de fade-out o precarga
+    setTimeout(() => pre.remove(), 500);
+  }, 4000);
+});
