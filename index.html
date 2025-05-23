@@ -66,15 +66,15 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
+                <form action="shop.html" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="¿Que buscas?">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
+                        <input type="text" name="q" class="form-control" placeholder="¿Qué buscas?">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-transparent text-primary" type="submit">
+                        <i class="fa fa-search"></i>
+                        </button>
                     </div>
+                </div>
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
@@ -107,7 +107,6 @@
                                 </a>
                                 <div class="dropdown-menu bg-primary2 rounded-0 border-0 m-0">
                                     <a href="shop.html" class="dropdown-item">Carrito de compra</a>
-                                    <a href="envio.html" class="dropdown-item">Detalles del lugar de envío</a>
                                 </div>
                             </div>
                             <a href="#" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="nav-item nav-link mx-2">Contáctanos</a>
@@ -202,9 +201,7 @@
                     <div class="animated-border right"></div>
                     <div class="animated-border bottom"></div>
                     <div class="animated-border left"></div>
-                </div>
-                
-                
+                </div>   
             </div>
         </div>
     </div>
@@ -447,6 +444,7 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
+    <script src="js/carrito.js"></script>
     <script src="js/main.js"></script>
 
     <script type="module">

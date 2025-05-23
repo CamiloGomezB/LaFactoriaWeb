@@ -27,7 +27,7 @@
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5"> <!-- bg-secundary=Color del background -->
-            <div class="col-12 col-lg-6">
+            <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
                     <a class="text-body mr-3" href="">Sobre nosotros</a> <!-- text-body=colore de la letra -->
                     <a class="text-body mr-3" href="">Contactanos</a>
@@ -68,7 +68,7 @@
             <div class="col-lg-4 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="¿Que buscas?">
+                        <input type="text" id="txtSearchTop" class="form-control" placeholder="¿Qué buscas?">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -85,11 +85,11 @@
     </div>
     <!-- Final de la barra de arriba -->
 
+
     <!-- Barra de navegacion -->
     <div class="container-fluid bg-dark mb-30">
         <div class="row px-xl-5">
-            <div class="col-12 col-lg-6 d-block">
-                    <!-- centrado dentro de la fila -->
+            <div class="col-lg-9 mx-auto"> <!-- centrado dentro de la fila -->
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0 justify-content-center ">
                     <a href="index.html" class="text-decoration-none d-block d-lg-none">
                         <span class="h1 text-uppercase text-dark bg-light px-2">La</span>
@@ -101,14 +101,12 @@
                     <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
                         <div class="navbar-nav d-flex flex-row flex-wrap align-items-center justify-content-center w-100 text-center">
                             <a href="shop.html" class="nav-item nav-link mx-2">Todos los productos</a>
-                            <a href="detalles.html" class="nav-item nav-link mx-2">Detalles del producto</a>
                             <div class="nav-item dropdown mx-2">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                     Detalles de compra <i class="fa fa-angle-down mt-1"></i>
                                 </a>
                                 <div class="dropdown-menu bg-primary2 rounded-0 border-0 m-0">
-                                    <a href="carrito.html" class="dropdown-item">Carrito de compra</a>
-                                    <a href="envio.html" class="dropdown-item">Detalles del lugar de envío</a>
+                                    <a href="shop.html" class="dropdown-item">Carrito de compra</a>
                                 </div>
                             </div>
                             <a href="#" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="nav-item nav-link mx-2">Contáctanos</a>
@@ -129,34 +127,38 @@
         </div>
     </div>
 
-<!--  Filtros -->
 <section id="filter-section" class="py-4 px-4 bg-white border-bottom shadow-sm">
-    <div class="container">
-      <div class="row align-items-center gx-3 gy-2">
-        <div class="col-md-4">
-          <label for="catFilter" class="form-label fw-semibold text-muted mb-1">Categoría:</label>
-          <select id="catFilter" class="form-select"></select>
-        </div>
-        <div class="col-md-8">
-          <label for="txtSearch" class="form-label fw-semibold text-muted mb-1">Buscar:</label>
-          <div class="input-group">
-            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-            <input
-              type="text"
-              id="txtSearch"
-              class="form-control border-start-0"
-              placeholder="Nombre o precio…"
-            />
-          </div>
+  <div class="container">
+    <div class="row align-items-center gx-3 gy-2">
+      
+      <!-- Filtro de categoría -->
+      <div class="col-md-4">
+        <label for="catFilter" class="form-label fw-semibold text-muted mb-1">Categoría:</label>
+        <select id="catFilter" class="form-control">
+          <option value="">Todas</option>
+          <!-- Agrega opciones dinámicamente aquí -->
+        </select>
+      </div>
+
+      <!-- Campo de búsqueda -->
+      <div class="col-md-4">
+        <label for="txtSearch" class="form-label fw-semibold text-muted mb-1">Buscar:</label>
+        <div class="input-group">
+          <input
+            type="text"
+            id="txtSearch"
+            class="form-control border-start-0"
+            placeholder="Nombre o precio…"
+          />
         </div>
       </div>
+
     </div>
-  </section>
-  
-  
+  </div>
+</section>
 
 
-        <!-- ==== INICIO NUEVAS SECCIONES DE PRODUCTOS ==== -->
+    <!-- ==== INICIO NUEVAS SECCIONES DE PRODUCTOS ==== -->
 
 <!-- 1) Productos Aleatorios (Polaroids) -->
 <section id="buying-section">
@@ -166,7 +168,7 @@
             <div class="product">
                 <img src="src/WhatsApp Image 2025-05-22 at 9.39.31 PM.jpeg" alt="Máscara Indígena">
                 <h2>Máscara Indígena</h2>
-                <p>Máscara del día de muertos pintada a mano</p>
+                <p>Esta calavera artesanal está elaborada cuidadosamente por manos expertas de artesanos colombianos, utilizando técnicas tradicionales de barro y pintura a mano. Inspirada en la riqueza cultural de nuestras regiones, sus colores vivos y detalles minuciosos representan la conexión entre la vida y la muerte, una expresión única del folclore colombiano. Ideal para quienes aprecian el arte popular lleno de historia y simbolismo.</p>
                 <p>6700</p>
                 <p>Pieza Cultural</p>
                 <button class="buy-button">Añadir al carrito</button>
@@ -174,7 +176,7 @@
                     <div class="product">
             <img src="src/WhatsApp Image 2025-05-22 at 9.39.32 PM.jpeg" alt="Lagartija de porcelana">
             <h2>Lagartija de porcelana</h2>
-            <p>Lagartija del día de muertos pintada a mano</p>
+            <p>La lagartija de artesanía colombiana es una pieza llena de vida y color, tallada y pintada a mano con esmero en madera o cerámica. Esta figura representa la fauna autóctona y es un símbolo de buena suerte y protección en muchas comunidades indígenas. Cada detalle refleja la pasión y dedicación de los artesanos que mantienen vivas las tradiciones ancestrales de Colombia.</p>
             <p>8500</p>
             <p>Pieza Cultural</p>
             <button class="buy-button">Añadir al carrito</button>
@@ -182,7 +184,7 @@
             <div class="product">
                 <img src="src/WhatsApp Image 2025-05-22 at 9.39.32 PM (1).jpeg" alt="Lagartija de porcelana">
                 <h2>Corazon de mamá</h2>
-                <p>corazon de tu madre diciendote que te ama</p>
+                <p>El corazón de porcelana artesanal es una pieza delicada y simbólica, moldeada y esmaltada a mano por expertos ceramistas colombianos. Representa el amor, la pasión y la calidez de nuestra tierra, decorado con motivos tradicionales que resaltan la identidad cultural. Ideal para regalar o como objeto decorativo que evoca sentimientos profundos y el arte refinado de Colombia.</p>
                 <p>13450</p>
                 <p>Articulo de uso domestico</p>
                 <button class="buy-button">Añadir al carrito</button>
@@ -190,7 +192,7 @@
             <div class="product">
                 <img src="src/WhatsApp Image 2025-05-22 at 9.39.45 PM (1).jpeg" alt="Lagartija de porcelana">
                 <h2>sobre mesa</h2>
-                <p>Perfecto para ponerlo como centro de MacetasTejidas</p>
+                <p>Esta sobremesa artesanal está hecha con materiales naturales y técnicas ancestrales, combinando funcionalidad y estética típica de las regiones colombianas. Perfecta para acompañar momentos de reunión y compartir, refleja la calidez y hospitalidad del pueblo colombiano. Cada pieza es única, elaborada con dedicación y pasión que honra nuestras raíces.</p>
                 <p>10500</p>
                 <p>Decoración</p>
                 <button class="buy-button">Añadir al carrito</button>
@@ -198,9 +200,17 @@
             <div class="product">
                 <img src="src/WhatsApp Image 2025-05-22 at 9.39.45 PM.jpeg" alt="Lagartija de porcelana">
                 <h2>mochila wuayu</h2>
-                <p>mochila artesanal para tus viajes</p>
+                <p>Esta maleta típica es una joya artesanal elaborada con fibras naturales como la guadua, el fique o el icaco, tejidos a mano siguiendo técnicas ancestrales. Su diseño rústico y funcional refleja la cultura campesina y el espíritu viajero del colombiano, perfecta para decorar espacios con un toque auténtico y eco-amigable. Cada maleta es única y cuenta una historia de tradiciones y talento artesanal.</p>
                 <p>32000</p>
                 <p>Mochilas y bolsas</p>
+                <button class="buy-button">Añadir al carrito</button>
+            </div>
+            <div class="product">
+                <img src="src/WhatsApp Image 2025-05-23 at 12.52.13 PM.jpeg" alt="Buho Tejido">
+                <h2>Buho Tejido</h2>
+                <p>Confeccionado con fibras naturales como lana o fique, y elaborado por talentosos artesanos de nuestras comunidades, cada detalle refleja paciencia, sabiduría y creatividad. Los colores vibrantes y los patrones tradicionales celebran la diversidad cultural del país. Ideal como adorno decorativo o símbolo de buena suerte, este búho representa protección y conocimiento, atributos profundamente valorados en muchas regiones de Colombia.</p>
+                <p>12500</p>
+                <p>Decoración</p>
                 <button class="buy-button">Añadir al carrito</button>
             </div>
         </div>
@@ -233,6 +243,7 @@
         </aside>
     </div>
 </section>
+
 
   <!-- 3) Carrusel simple -->
   <section id="carousel-section" class="py-4 text-center bg-white">

@@ -171,3 +171,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const inputBusquedaTop = document.getElementById("txtSearchTop");
+
+// Detectar cambios en la barra de búsqueda superior
+inputBusquedaTop.addEventListener("input", () => {
+  inputBusqueda.value = inputBusquedaTop.value;
+  aplicarFiltros();
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("q");
+
+  if (query) {
+    inputBusqueda.value = query;
+    inputBusquedaTop.value = query; // si usas barra superior también aquí
+    aplicarFiltros();
+  }
+});
