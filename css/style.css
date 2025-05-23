@@ -9810,20 +9810,27 @@ a.text-dark:hover, a.text-dark:focus {
   color: #6c757d;
 }
 .cat-item {
-  background: white;
-  transition: .5s;
+  border: 2px solid #000;
+  height: 320px;
+  border-radius: 12px;            
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;         
 }
 
 .cat-item:hover {
-  background: #F7374F;
+  transform: translateY(-5px);    
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .cat-item img {
   transition: .5s;
+  border-radius: 12px;  
 }
 
 .cat-item:hover img {
   transform: scale(1.2) rotate(5deg);
+  border-radius: 12px;  
 }
 
 .product-item {

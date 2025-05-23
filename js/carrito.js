@@ -190,3 +190,19 @@ window.addEventListener("DOMContentLoaded", () => {
     aplicarFiltros();
   }
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("q");
+  const categoriaParam = params.get("categoria");
+
+  if (query) {
+    inputBusqueda.value = query;
+    aplicarFiltros();
+  }
+
+  if (categoriaParam) {
+    filtroCategoria.value = categoriaParam;
+    aplicarFiltros();
+  }
+});
