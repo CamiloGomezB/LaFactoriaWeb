@@ -224,6 +224,29 @@
     document.getElementById('logoutBtn').addEventListener('click', () => {
       auth.signOut().then(() => window.location.href = 'index.html');
     });
+
+
+    onAuthStateChanged(auth, (user) => {
+    const miCuenta = document.querySelector(".btn-group");
+
+    if (user) {
+        // Si está logueado, reemplaza el menú por un botón al dashboard
+        miCuenta.innerHTML = `
+        <a href="auth/comprador.html" class="btn btn-sm btn-light">Cuenta</a>
+        <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
+        `;
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+        auth.signOut().then(() => {
+            window.location.reload();
+        });
+        });
+
+    } else {
+        // Si no está logueado, se muestra el menú por defecto (ya está en el HTML original)
+    }
+    });
+
   </script>
 
   <!-- jQuery y Bootstrap JS necesarios para dropdowns -->
