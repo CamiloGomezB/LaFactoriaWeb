@@ -9346,7 +9346,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-body {
-  color: #F5F5F5!important;
+  color: #000!important;
 }
 
 .text-muted {
@@ -9721,7 +9721,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .cat-item {
-  background: #FFFFFF;
+  background: white;
   transition: .5s;
 }
 
