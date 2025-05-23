@@ -9720,6 +9720,20 @@ a.text-dark:hover, a.text-dark:focus {
   opacity: 1;
 }
 
+#filter-section {
+  background: #f8f9fa;
+  border-radius: 0 0 10px 10px;
+}
+
+#filter-section .form-select,
+#filter-section .form-control {
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+.input-group-text i {
+  color: #6c757d;
+}
 .cat-item {
   background: white;
   transition: .5s;
