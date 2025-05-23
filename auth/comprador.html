@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel del Comprador</title>
+  <link rel="icon" href="img/engranaje.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts + Bootstrap + FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar d-flex justify-content-between align-items-center">
+    <div>
+      <a href="#">Sobre nosotros</a>
+      <a href="#">Contactanos</a>
+      <a href="#">Ayuda</a>
+      <a href="#">FAQs</a>
+    </div>
+    <div class="btn-group">
+      <a href="#" class="btn btn-sm btn-light">Cuenta</a>
+      <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <!-- Logo and Search -->
+  <div class="logo-bar d-flex justify-content-between align-items-center container">
+    <a href="index.html" class="h1 text-uppercase text-white bg-danger px-2 py-1">LA <span class="text-dark">FACTORIA</span></a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="¿Que buscas?">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <div class="text-right">
+      <small class="text-muted">Servicio al cliente</small><br>
+      <strong>+57 311 8936380</strong>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navbar-section text-white text-center py-2">
+    <a href="#" class="text-white mx-3">Todos los productos</a>
+    <a href="#" class="text-white mx-3">Detalles de compra</a>
+    <a href="#" class="text-white mx-3">Contáctanos</a>
+    <i class="fas fa-heart text-danger mx-2"></i> <span>0</span>
+    <i class="fas fa-shopping-cart text-danger mx-2"></i> <span>0</span>
+  </div>
+
+  <!-- Email Info -->
+  <div class="card shadow bg-white email-card">
+    <div class="d-flex align-items-center mb-3">
+      <i class="fas fa-check-circle text-success mr-2"></i>
+      <span class="text-success font-weight-bold">Validado</span>
+    </div>
+    <h5 class="mb-1">E-mail</h5>
+    <p id="userEmail" class="text-muted">Cargando...</p>
+    <hr>
+    <button class="btn btn-light-blue">Modificar</button>
+  </div>
+
+  <!-- Firebase Auth -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+      authDomain: "weblafactor.firebaseapp.com",
+      projectId: "weblafactor",
+      appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        document.getElementById('userEmail').textContent = user.email;
+      } else {
+        alert('Debes iniciar sesión');
+        window.location.href = 'login.html';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      auth.signOut().then(() => window.location.href = 'index.html');
+    });
+  </script>
+</body>
+</html>
