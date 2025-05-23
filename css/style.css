@@ -214,6 +214,38 @@ caption {
   caption-side: bottom;
 }
 
+
+.vendor-card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vendor-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.vendor-description {
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+    flex-shrink: 0;
+}
+
+.vendor-image {
+    max-height: 200px;
+    object-fit: contain;
+}
+
+
 th {
   text-align: inherit;
   text-align: -webkit-match-parent;
@@ -9753,6 +9785,18 @@ a.text-dark:hover, a.text-dark:focus {
 
 .product-item {
   transition: .5s;
+}
+
+@media (max-width: 768px) {
+  .shop-layout {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .cart-container {
+      width: 100%;
+      margin-top: 2rem;
+  }
 }
 
 .product-action {
