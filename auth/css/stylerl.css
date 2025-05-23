@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #000000, #e0e0e0);
+    background: linear-gradient(135deg, #000000, #3a3a3a);
     display: flex;
     justify-content: center;
     align-items: center;

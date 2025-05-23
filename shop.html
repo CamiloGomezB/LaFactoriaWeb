@@ -131,9 +131,82 @@
         <!-- ==== INICIO NUEVAS SECCIONES DE PRODUCTOS ==== -->
 
 <!-- 1) Productos Aleatorios (Polaroids) -->
-<section id="random-section" style="position: relative; height: 600px; background: #fff;">
-  <main id="table"></main>
+<section id="buying-section">
+    <div class="shop-layout">
+    <!-- Vitrina de productos -->
+        <div class="products-container">
+            <div class="product">
+                <img src="src/WhatsApp Image 2025-05-22 at 9.39.31 PM.jpeg" alt="Máscara Indígena">
+                <h2>Máscara Indígena</h2>
+                <p>Máscara del día de muertos pintada a mano</p>
+                <p>6700</p>
+                <p>Pieza Cultural</p>
+                <button class="buy-button">Añadir al carrito</button>
+            </div>
+                    <div class="product">
+            <img src="src/WhatsApp Image 2025-05-22 at 9.39.32 PM.jpeg" alt="Lagartija de porcelana">
+            <h2>Lagartija de porcelana</h2>
+            <p>Lagartija del día de muertos pintada a mano</p>
+            <p>8500</p>
+            <p>Pieza Cultural</p>
+            <button class="buy-button">Añadir al carrito</button>
+            </div>
+            <div class="product">
+                <img src="src/WhatsApp Image 2025-05-22 at 9.39.32 PM (1).jpeg" alt="Lagartija de porcelana">
+                <h2>Corazon de mamá</h2>
+                <p>corazon de tu madre diciendote que te ama</p>
+                <p>13450</p>
+                <p>Articulo de uso domestico</p>
+                <button class="buy-button">Añadir al carrito</button>
+            </div>
+            <div class="product">
+                <img src="src/WhatsApp Image 2025-05-22 at 9.39.45 PM (1).jpeg" alt="Lagartija de porcelana">
+                <h2>sobre mesa</h2>
+                <p>Perfecto para ponerlo como centro de MacetasTejidas</p>
+                <p>10500</p>
+                <p>Decoración</p>
+                <button class="buy-button">Añadir al carrito</button>
+            </div>
+            <div class="product">
+                <img src="src/WhatsApp Image 2025-05-22 at 9.39.45 PM.jpeg" alt="Lagartija de porcelana">
+                <h2>mochila wuayu</h2>
+                <p>mochila artesanal para tus viajes</p>
+                <p>32000</p>
+                <p>Mochilas y bolsas</p>
+                <button class="buy-button">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito de la compra -->
+        <aside class="cart-container">
+            <header>
+                <h1>Proceso de Pago</h1>
+            </header>
+            <main>
+                <section class="formulario-pago">
+                    <h2>Datos de Envío</h2>
+                    <form id="pedido-form">
+                        <input type="text" id="nombre" placeholder="Nombre" required>
+                        <input type="text" id="telefono" placeholder="Teléfono" required>
+                        <input type="text" id="direccion" placeholder="Dirección" required>
+                        <button type="submit">Enviar Pedido</button>
+                    </form>
+                    <button type="button" onclick="cancelarPedido()">Cancelar Pedido</button>
+                </section>
+                <section class="resumen-carrito">
+                <h2>Resumen del Pedido</h2>
+                <ul id="lista-carrito"></ul>
+                    <p><strong>Subtotal:</strong> <span id="precio"></span></p>
+                    <p><strong>IVA (19%):</strong> <span id="impuesto"></span></p>
+                    <p><strong>Total:</strong> <span id="total"></span></p>
+                </section>
+            </main>
+        </aside>
+    </div>
 </section>
+
+
 
 <!-- 2) Barra de filtros -->
 <section id="filter-section" class="py-3 px-4 bg-light">
@@ -238,5 +311,6 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/carrito.js"></script>
+
 </body>
