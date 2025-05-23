@@ -10170,15 +10170,9 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-
 @keyframes spin {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
-
-
-
-
-
 
 /* Animación de acción */
 @keyframes action {
