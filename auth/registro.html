@@ -90,8 +90,12 @@
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           await updateProfile(userCredential.user, { displayName: nombre });
 
+          localStorage.setItem("rolTemporal", rol);
+
           alert("Usuario registrado correctamente");
+
           window.location.href = "login.html";
+
         } catch (error) {
           if (error.code === 'auth/email-already-in-use') {
             errorMensaje.textContent = "Este correo ya está en uso. Por favor, usa otro.";

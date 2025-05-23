@@ -30,7 +30,17 @@
         try {
           await signInWithEmailAndPassword(auth, email, password);
           alert("Inicio de sesión exitoso");
-          window.location.href = "dashboard.html"; // Redirige a otra página si deseas
+
+          const rol = localStorage.getItem("rolTemporal");
+
+          if (rol === "admin") {
+            window.location.href = "admin.html";
+          } else if (rol === "vendedor") {
+            window.location.href = "vendedor.html";
+          } else {
+            window.location.href = "comprador.html";
+          }
+
         } catch (error) {
           alert("Error: " + error.message);
         }

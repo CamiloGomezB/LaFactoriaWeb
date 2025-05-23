@@ -214,6 +214,40 @@ caption {
   caption-side: bottom;
 }
 
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .topbar {
+      background-color: #212529;
+      padding: 5px 15px;
+      color: white;
+    }
+    .topbar a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+    .topbar .btn-group .btn {
+      margin-left: 10px;
+    }
+    .logo-bar {
+      background-color: #f1f1f1;
+      padding: 15px;
+    }
+    .navbar-section {
+      background-color: #212529;
+    }
+    .email-card {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+    .btn-light-blue {
+      background-color: #e7f1ff;
+      color: #007bff;
+    }
+
+
 
 .vendor-card {
     border: 2px solid #ccc;
