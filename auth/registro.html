@@ -106,6 +106,15 @@
         }
       });
     });
+    function redirigirPorRol(rol) {
+  if (rol === "vendedor") {
+    window.location.href = "admin-index.html";
+  } else if (rol === "comprador") {
+    window.location.href = "index.html";
+  } else {
+    alert("Rol no reconocido.");
+  }
+}
   </script>
 </head>
 <body>
@@ -131,7 +140,6 @@
     <select id="rol" required>
       <option value="usuario">Comprador</option>
       <option value="admin">Administrador</option>
-      <option value="vendedor">Vendedor</option>
     </select>
 
     <div id="codigoContainer">
