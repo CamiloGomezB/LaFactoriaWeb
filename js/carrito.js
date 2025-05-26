@@ -111,27 +111,50 @@ botonesCompra.forEach((btn) => {
 
   btn.textContent = "Contactar";
 
-  btn.addEventListener("click", () => {
-    const hash = [...nombre].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-    const numeroFalso = "+57 300 " + String(1000000 + (hash % 9000000)).padStart(7, '0');
+  btn.addEventListener("click", async () => {
+    const correo = data.correo;
+    if (!correo) {
+        alert("Este producto no tiene vendedor asignado.");
+        return;
+    }
 
-    const panel = document.getElementById("info-contacto");
-    const contenido = document.getElementById("contenido-contacto");
-    const imagenVendedor = document.getElementById("vendedor-img");
+    try {
+        const vendedorRef = doc(firestore, "vendedores", correo);
+        const vendedorSnap = await getDoc(vendedorRef);
 
-    // Obtener datos del vendedor asignado a este producto
-    const vendedor = vendedoresPorProducto[nombre] || { img: "", nombre: "Vendedor no asignado" };
+        if (!vendedorSnap.exists()) {
+            alert("No se encontró información del vendedor.");
+            return;
+        }
 
-    imagenVendedor.src = vendedor.img;
-    imagenVendedor.alt = vendedor.nombre;
+        const vendedor = vendedorSnap.data();
 
-    contenido.innerHTML = `
-      Para más información sobre <strong>${nombre}</strong>, comunícate al número:<br>
-      <span style="font-size: 1.2rem;">${numeroFalso}</span><br><br>
-      <span style="font-size: 0.95rem;">Atendido por: ${vendedor.nombre}</span>
-    `;
+        // Validación opcional por rol
+        if (vendedor.rol !== "vendedor") {
+            alert("El usuario asociado no está registrado como vendedor.");
+            return;
+        }
 
-    panel.style.display = "block";
+        // Mostrar información
+        const panel = document.getElementById("info-contacto");
+        const imagenVendedor = document.getElementById("foto");
+        const contenido = document.getElementById("telefono");
+
+        imagenVendedor.src = vendedor.foto || 'img/vendor-default.jpg';
+        imagenVendedor.alt = vendedor.nombre || "Vendedor";
+
+        contenido.innerHTML = `
+            Para más información sobre <strong>${data.nombre_producto}</strong>, comunícate al número:<br>
+            <span style="font-size: 1.2rem;">${vendedor.telefono || 'No disponible'}</span><br><br>
+            <span style="font-size: 0.95rem;">Atendido por: ${vendedor.nombre || 'Sin nombre'}</span><br>
+            <span style="font-size: 0.85rem;">Ocupación: ${vendedor.ocupacion || 'No indicada'}</span>
+        `;
+
+        panel.style.display = "block";
+    } catch (error) {
+        console.error("Error al obtener el vendedor:", error);
+        alert("No se pudo obtener la información del vendedor.");
+    }
   });
 });
 
