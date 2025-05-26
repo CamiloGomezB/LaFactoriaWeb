@@ -197,57 +197,60 @@
 
 
 
-  <!-- Firebase Auth -->
-  <script type="module">
+<!-- Firebase Auth -->
+<script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
-    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js';
-
+    import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js';
+  
     const firebaseConfig = {
       apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
       authDomain: "weblafactor.firebaseapp.com",
       projectId: "weblafactor",
       appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
     };
-
+  
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        document.getElementById('userEmail').textContent = user.email;
-      } else {
-        alert('Debes iniciar sesión');
-        window.location.href = 'login.html';
-      }
+  
+    window.addEventListener("DOMContentLoaded", () => {
+      const miCuenta = document.querySelector(".btn-group");
+  
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // Mostrar botones para usuario logueado
+          if (miCuenta) {
+            miCuenta.innerHTML = `
+              <a href="comprador.html" class="btn btn-sm btn-light">Cuenta</a>
+              <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
+            `;
+  
+            // Añadir evento al botón de logout
+            const logoutBtn = document.getElementById("logoutBtn");
+            if (logoutBtn) {
+              logoutBtn.addEventListener("click", () => {
+                signOut(auth).then(() => {
+                  window.location.href = "index.html";
+                });
+              });
+            }
+          }
+  
+          // Mostrar email (opcional)
+          const userEmail = document.getElementById('userEmail');
+          if (userEmail) {
+            userEmail.textContent = user.email;
+          }
+  
+        } else {
+          // Redireccionar solo si estamos en una página protegida
+          if (window.location.pathname !== "/index.html") {
+            window.location.href = "login.html";
+          }
+        }
+      });
     });
-
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      auth.signOut().then(() => window.location.href = 'index.html');
-    });
-
-
-    onAuthStateChanged(auth, (user) => {
-    const miCuenta = document.querySelector(".btn-group");
-
-    if (user) {
-        // Si está logueado, reemplaza el menú por un botón al dashboard
-        miCuenta.innerHTML = `
-        <a href="auth/comprador.html" class="btn btn-sm btn-light">Cuenta</a>
-        <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
-        `;
-
-        document.getElementById("logoutBtn").addEventListener("click", () => {
-        auth.signOut().then(() => {
-            window.location.reload();
-        });
-        });
-
-    } else {
-        // Si no está logueado, se muestra el menú por defecto (ya está en el HTML original)
-    }
-    });
-
   </script>
+  
 
   <!-- jQuery y Bootstrap JS necesarios para dropdowns -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>

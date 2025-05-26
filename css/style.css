@@ -10173,7 +10173,7 @@ a.text-dark:hover, a.text-dark:focus {
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 
 #preloader.loaded {
@@ -10231,7 +10231,8 @@ h1.rainbow-text {
 
 #newproducts {
     background: #1f1f1f;
-    padding: 2rem;
+    margin: 0 auto;
+    padding: 40px 20px;
     border-radius: 1rem;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     width: 100%;
@@ -10239,17 +10240,17 @@ h1.rainbow-text {
     color: #ffffff;
 }
 
-#producto-form {
+#productoform {
     display: flex;
     left: 200px;
     flex-direction: column;
     gap: 1rem;
 }
 
-#producto-form input[type="text"],
-#producto-form input[type="number"],
-#producto-form input[type="file"],
-#producto-form textarea {
+#productoform input[type="text"],
+#productoform input[type="number"],
+#productoform input[type="file"],
+#productoform textarea {
     padding: 0.8rem;
     border: 1px solid #555;
     border-radius: 0.5rem;
@@ -10259,24 +10260,24 @@ h1.rainbow-text {
     transition: border 0.3s, box-shadow 0.3s;
 }
 
-#producto-form input::placeholder,
-#producto-form textarea::placeholder {
+#productoform input::placeholder,
+#productoform textarea::placeholder {
     color: #aaa;
 }
 
-#producto-form input:focus,
-#producto-form textarea:focus {
+#productoform input:focus,
+#productoform textarea:focus {
     border-color: #ff3860;
     box-shadow: 0 0 0 3px rgba(255, 56, 96, 0.2);
     outline: none;
 }
 
-#producto-form textarea {
+#productoform textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-#producto-form button {
+#productoform button {
     background-color: #ff3860;
     color: #ffffff;
     padding: 0.9rem;
@@ -10287,7 +10288,7 @@ h1.rainbow-text {
     transition: background-color 0.3s ease;
 }
 
-#producto-form button:hover {
+#productoform button:hover {
     background-color: #e0274d;
 }
 

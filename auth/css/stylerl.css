@@ -3,11 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-<<<<<<< Updated upstream
     background: linear-gradient(135deg, #000000, #3a3a3a);
-=======
     background: linear-gradient(135deg, #000000, #2c2c2c);
->>>>>>> Stashed changes
     display: flex;
     justify-content: center;
     align-items: center;
