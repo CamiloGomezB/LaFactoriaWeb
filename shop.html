@@ -217,28 +217,17 @@
     </div>
 
     <!-- Carrito de la compra -->
-        <aside class="cart-container">
+        <aside class="cart-container" id="info-contacto" style="display: none; padding: 20px;">
             <header>
-                <h1>Proceso de Pago</h1>
+                <h2 style="color: black;">Información de contacto</h2>
             </header>
             <main>
-                <section class="formulario-pago">
-                    <h2>Datos de Envío</h2>
-                    <form id="pedido-form">
-                        <input type="text" id="nombre" placeholder="Nombre" required>
-                        <input type="text" id="telefono" placeholder="Teléfono" required>
-                        <input type="text" id="direccion" placeholder="Dirección" required>
-                        <button type="submit">Enviar Pedido</button>
-                    </form>
-                    <button type="button" onclick="cancelarPedido()">Cancelar Pedido</button>
-                </section>
-                <section class="resumen-carrito">
-                <h2>Resumen del Pedido</h2>
-                <ul id="lista-carrito"></ul>
-                    <p><strong>Subtotal:</strong> <span id="precio"></span></p>
-                    <p><strong>IVA (19%):</strong> <span id="impuesto"></span></p>
-                    <p><strong>Total:</strong> <span id="total"></span></p>
-                </section>
+                <img id="vendedor-img" src="" alt="Vendedor" style="max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px;">
+                <p id="contenido-contacto" style="color: black; font-weight: bold;"></p>
+                <button onclick="document.getElementById('info-contacto').style.display='none'"
+                style="background-color: #dc3545; color: white; border: none; border-radius: 5px; padding: 8px 12px; margin-top: 15px;">
+                Ocultar información
+            </button>
             </main>
         </aside>
     </div>

@@ -69,12 +69,24 @@ function aplicarEstiloBoton(boton) {
 
 const botonesCompra = document.querySelectorAll(".buy-button");
 botonesCompra.forEach((btn) => {
+
+  
   aplicarEstiloBoton(btn);
 
   const producto = btn.parentElement;
   const nombre = producto.querySelector("h2").textContent;
+  const vendedoresPorProducto = {
+  "Máscara Indígena": { img: "img/vendor-1.png", nombre: "Juan, carpintero especializado en muebles rústicos" },
+  "Lagartija de porcelana": { img: "img/vendor-2.png", nombre: "Luisa, ceramista artesanal" },
+  "Corazon de mamá": { img: "img/vendor-3.png", nombre: "Carlos, experto en cuero" },
+  "Sobre mesa": { img: "img/vendor-4.png", nombre: "Diana, diseñadora de ropa" },
+  "mochila wuayu": { img: "img/vendor-5.png", nombre: "Oscar, escultor artesanal" },
+  "Buho Tejido": { img: "img/vendor-6.png", nombre: "María, bordadora tradicional" }
+  };
   const precio = parseFloat(producto.querySelectorAll("p")[1].textContent.replace(/[^\d.]/g, ""));
   const categoria = producto.querySelectorAll("p")[2].textContent;
+
+  
 
   if (!producto.querySelector(".heart-button")) {
     const heartBtn = document.createElement("button");
@@ -97,14 +109,29 @@ botonesCompra.forEach((btn) => {
     producto.appendChild(infoBtn);
   }
 
+  btn.textContent = "Contactar";
+
   btn.addEventListener("click", () => {
-    const existente = carrito.find(p => p.nombre === nombre);
-    if (existente) {
-      if (existente.cantidad < 10) existente.cantidad++;
-    } else {
-      carrito.push({ nombre, precio, categoria, cantidad: 1 });
-    }
-    actualizarResumenCarrito();
+    const hash = [...nombre].reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    const numeroFalso = "+57 300 " + String(1000000 + (hash % 9000000)).padStart(7, '0');
+
+    const panel = document.getElementById("info-contacto");
+    const contenido = document.getElementById("contenido-contacto");
+    const imagenVendedor = document.getElementById("vendedor-img");
+
+    // Obtener datos del vendedor asignado a este producto
+    const vendedor = vendedoresPorProducto[nombre] || { img: "", nombre: "Vendedor no asignado" };
+
+    imagenVendedor.src = vendedor.img;
+    imagenVendedor.alt = vendedor.nombre;
+
+    contenido.innerHTML = `
+      Para más información sobre <strong>${nombre}</strong>, comunícate al número:<br>
+      <span style="font-size: 1.2rem;">${numeroFalso}</span><br><br>
+      <span style="font-size: 0.95rem;">Atendido por: ${vendedor.nombre}</span>
+    `;
+
+    panel.style.display = "block";
   });
 });
 
