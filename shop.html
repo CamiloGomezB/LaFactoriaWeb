@@ -286,6 +286,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
@@ -320,28 +321,91 @@
     contenedor.innerHTML = "<p>Cargando productos...</p>";
 
     async function mostrarProductos() {
-        const querySnapshot = await getDocs(collection(firestore, "usuarios"));
-        contenedor.innerHTML = "";
+    const querySnapshot = await getDocs(collection(firestore, "usuarios"));
+    contenedor.innerHTML = "";
 
-        querySnapshot.forEach((doc) => {
-        const data = doc.data();
+    for (const docSnap of querySnapshot.docs) {
+        const data = docSnap.data();
 
         const producto = document.createElement("div");
         producto.classList.add("product");
+
         producto.innerHTML = `
-            <img src="${data.imagen_base64 || 'img/placeholder.jpg'}" alt="${data.nombre_producto}">
-            <h2>${data.nombre_producto}</h2>
-            <p>${data.descripcion}</p>
-            <p>${data.precio}</p>
-            <p>${data.categoria}</p>
-            <button class="buy-button">Añadir al carrito</button>
+        <img src="${data.imagen_base64 || 'img/placeholder.jpg'}" alt="${data.nombre_producto}">
+        <h2>${data.nombre_producto}</h2>
+        <p>${data.descripcion}</p>
+        <p>$${data.precio}</p>
+        <p>${data.categoria}</p>
+        <button class="buy-button">Contactar</button>
         `;
+
         contenedor.appendChild(producto);
+
+        const btn = producto.querySelector(".buy-button");
+        aplicarEstiloBoton(btn);
+
+        btn.addEventListener("click", async () => {
+        const correo = data.correo;
+        if (!correo) {
+            alert("Este producto no tiene vendedor asignado.");
+            return;
+        }
+
+        try {
+            const vendedorRef = doc(firestore, "vendedores", correo);
+            const vendedorSnap = await getDoc(vendedorRef);
+
+            if (!vendedorSnap.exists()) {
+            alert("No se encontró información del vendedor.");
+            return;
+            }
+
+            const vendedor = vendedorSnap.data();
+            const panel = document.getElementById("info-contacto");
+            const contenido = document.getElementById("telefono");
+            const imagenVendedor = document.getElementById("foto");
+
+            imagenVendedor.src = vendedor.foto || 'img/vendor-default.jpg';
+            imagenVendedor.alt = vendedor.nombre || "Vendedor";
+
+            contenido.innerHTML = `
+            Para más información sobre <strong>${data.nombre_producto}</strong>, comunícate al número:<br>
+            <span style="font-size: 1.2rem;">${vendedor.telefono || 'No disponible'}</span><br><br>
+            <span style="font-size: 0.95rem;">Atendido por: ${vendedor.nombre || 'Sin nombre'}</span><br>
+            <span style="font-size: 0.85rem;">Ocupación: ${vendedor.ocupacion || 'No indicada'}</span>
+            `;
+
+            panel.style.display = "block";
+        } catch (error) {
+            console.error("Error al obtener el vendedor:", error);
+            alert("No se pudo obtener la información del vendedor.");
+        }
         });
 
-        // Cargar lógica del carrito
-        import("js/carrito.js");
+        // Botones adicionales
+        const heartBtn = document.createElement("button");
+        heartBtn.textContent = "❤";
+        heartBtn.classList.add("heart-button");
+        heartBtn.onclick = () => {
+        favoritosCount++;
+        favoritosBadge.textContent = favoritosCount;
+        };
+        aplicarEstiloBoton(heartBtn);
+        producto.appendChild(heartBtn);
+
+        const infoBtn = document.createElement("button");
+        infoBtn.textContent = "ℹ️";
+        infoBtn.classList.add("info-button");
+        infoBtn.onclick = () => {
+        alert(data.descripcion);
+        };
+        aplicarEstiloBoton(infoBtn);
+        producto.appendChild(infoBtn);
     }
+
+    aplicarFiltros();
+    }
+
 
     mostrarProductos();
     </script>

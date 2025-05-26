@@ -16,10 +16,13 @@
       display: none;
     }
   </style>
+
+  <script type="module" src="js/registro2.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
     import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
 
 
     const firebaseConfig = {
@@ -30,7 +33,7 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    const auth = getAuth(app)
     const db = getFirestore(app);
 
 
@@ -57,6 +60,7 @@
 
       document.getElementById("registroForm").addEventListener("submit", async (e) => {
         e.preventDefault();
+        
         errorMensaje.style.display = "none";
 
         const nombre = document.getElementById("nombre").value;
@@ -90,7 +94,7 @@
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           await updateProfile(userCredential.user, { displayName: nombre });
 
-
+          
 
           alert("Usuario registrado correctamente");
 
@@ -106,16 +110,10 @@
         }
       });
     });
-    function redirigirPorRol(rol) {
-  if (rol === "vendedor") {
-    window.location.href = "admin-index.html";
-  } else if (rol === "comprador") {
-    window.location.href = "index.html";
-  } else {
-    alert("Rol no reconocido.");
-  }
-}
   </script>
+  
+  <script type="module" src="js/firebase.js"></script>
+
 </head>
 <body>
 
