@@ -31,7 +31,6 @@
           await signInWithEmailAndPassword(auth, email, password);
           alert("Inicio de sesión exitoso");
 
-          const rol = localStorage.getItem("rolTemporal");
 
           if (rol === "admin") {
             window.location.href = "comprador.html";

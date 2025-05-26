@@ -3,134 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro</title>
+  <link rel="icon" href="img/engranaje.png" type="image/png">
   <link rel="stylesheet" href="css/stylerl.css">
+
   <style>
-    #codigoContainer, #camposVendedor, #errorMensaje {
+    #codigoContainer {
       display: none;
     }
     #errorMensaje {
       color: red;
       margin-top: 10px;
+      display: none;
     }
   </style>
-
   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
-  import { guardarVendedorEnFirestore } from "js/registro2.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
-    authDomain: "weblafactor.firebaseapp.com",
-    projectId: "weblafactor",
-    storageBucket: "weblafactor.appspot.com",
-    appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
-  };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
+    const firebaseConfig = {
+      apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+      authDomain: "weblafactor.firebaseapp.com",
+      projectId: "weblafactor",
+      appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+    };
 
-  const CODIGO_ADMIN = "CODIGOADMIN123456789012345";
-  const CODIGO_VENDEDOR = "CODIGOVENDEDOR123456789012";
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const rolSelect = document.getElementById("rol");
-    const codigoContainer = document.getElementById("codigoContainer");
-    const camposVendedor = document.getElementById("camposVendedor");
-    const errorMensaje = document.getElementById("errorMensaje");
 
-    rolSelect.addEventListener("change", () => {
-      const rol = rolSelect.value;
+    // Códigos fijos (ocultos) para roles especiales
+    const CODIGO_ADMIN = "CODIGOADMIN123456789012345";
+    const CODIGO_VENDEDOR = "CODIGOVENDEDOR123456789012";
 
-      if (rol === "admin" || rol === "vendedor") {
-        codigoContainer.style.display = "block";
-        document.getElementById("codigo").required = true;
-      } else {
-        codigoContainer.style.display = "none";
-        document.getElementById("codigo").required = false;
-      }
+    window.addEventListener("DOMContentLoaded", () => {
+      const rolSelect = document.getElementById("rol");
+      const codigoContainer = document.getElementById("codigoContainer");
+      const errorMensaje = document.getElementById("errorMensaje");
 
-      if (rol === "vendedor") {
-        camposVendedor.style.display = "block";
-        document.getElementById("telefono").required = true;
-        document.getElementById("ocupacion").required = true;
-        document.getElementById("foto").required = true;
-      } else {
-        camposVendedor.style.display = "none";
-        document.getElementById("telefono").required = false;
-        document.getElementById("ocupacion").required = false;
-        document.getElementById("foto").required = false;
-      }
-    });
+      rolSelect.addEventListener("change", () => {
+        const rol = rolSelect.value;
 
-    document.getElementById("registroForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      errorMensaje.style.display = "none";
+        if (rol === "admin" || rol === "vendedor") {
+          codigoContainer.style.display = "block";
+          document.getElementById("codigo").required = true;
+        } else {
+          codigoContainer.style.display = "none";
+          document.getElementById("codigo").required = false;
+        }
+      });
 
-      const nombre = document.getElementById("nombre").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const rol = document.getElementById("rol").value;
-      const codigoIngresado = document.getElementById("codigo").value;
+      document.getElementById("registroForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorMensaje.style.display = "none";
 
-      const telefono = document.getElementById("telefono").value;
-      const ocupacion = document.getElementById("ocupacion").value;
-      const fotoFile = document.getElementById("foto").files[0];
+        const nombre = document.getElementById("nombre").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const rol = document.getElementById("rol").value;
+        const codigoIngresado = document.getElementById("codigo").value;
 
-      if (rol === "admin" && codigoIngresado !== CODIGO_ADMIN) {
-        errorMensaje.textContent = "Código incorrecto para Administrador.";
-        errorMensaje.style.display = "block";
-        return;
-      }
-
-      if (rol === "vendedor" && codigoIngresado !== CODIGO_VENDEDOR) {
-        errorMensaje.textContent = "Código incorrecto para Vendedor.";
-        errorMensaje.style.display = "block";
-        return;
-      }
-
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        await updateProfile(userCredential.user, { displayName: nombre });
-
-        // Guardar adicionalmente en colección 'usuarios' si deseas
-        await setDoc(doc(db, "usuarios", email), {
-          nombre,
-          email,
-          rol
-        });
-
-        // Guardar vendedor en colección 'vendedores' con imagen base64
-        if (rol === "vendedor") {
-          await guardarVendedorEnFirestore({
-            nombre,
-            email,
-            rol,
-            telefono,
-            ocupacion,
-            fotoFile
-          });
+        // Validar código si es admin o vendedor
+        if (rol === "admin" && codigoIngresado !== CODIGO_ADMIN) {
+          errorMensaje.textContent = "Código incorrecto para Administrador.";
+          errorMensaje.style.display = "block";
+          return;
         }
 
-        alert("Usuario registrado correctamente.");
-        window.location.href = "login.html";
-      } catch (error) {
-        errorMensaje.textContent = "Error: " + (error.code === 'auth/email-already-in-use'
-          ? "Este correo ya está en uso. Por favor, usa otro."
-          : error.message);
-        errorMensaje.style.display = "block";
-      }
-    });
-  });
-</script>
-  
+        if (rol === "vendedor" && codigoIngresado !== CODIGO_VENDEDOR) {
+          errorMensaje.textContent = "Código incorrecto para Vendedor.";
+          errorMensaje.style.display = "block";
+          return;
+        }
 
+        try {
+          // Hashear contraseña
+          const encoder = new TextEncoder();
+          const data = encoder.encode(password);
+          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashedPassword = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+          // Crear usuario
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(userCredential.user, { displayName: nombre });
+
+
+
+          alert("Usuario registrado correctamente");
+
+          window.location.href = "login.html";
+
+        } catch (error) {
+          if (error.code === 'auth/email-already-in-use') {
+            errorMensaje.textContent = "Este correo ya está en uso. Por favor, usa otro.";
+          } else {
+            errorMensaje.textContent = "Error: " + error.message;
+          }
+          errorMensaje.style.display = "block";
+        }
+      });
+    });
+    function redirigirPorRol(rol) {
+  if (rol === "vendedor") {
+    window.location.href = "admin-index.html";
+  } else if (rol === "comprador") {
+    window.location.href = "index.html";
+  } else {
+    alert("Rol no reconocido.");
+  }
+}
+  </script>
 </head>
 <body>
+
+  <a href="../index.html" style="
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: sans-serif;
+">Volver al inicio</a>
 
   <form id="registroForm">
     <h2>Registro</h2>
@@ -138,17 +138,12 @@
     <input type="email" id="email" placeholder="Correo" required>
     <input type="password" id="password" placeholder="Contraseña" required>
     <select id="rol" required>
-      <option value="">Seleccione un rol</option>
       <option value="usuario">Comprador</option>
-      <option value="vendedor">Vendedor</option>
-      <option value="admin">Administrador</option>
+      <option value="admin">Vendedor</option>
     </select>
 
     <div id="codigoContainer">
-      <input type="password" id="codigo" placeholder="Código único">
-    </div>
-
-    <div id="camposVendedor">
+      <input type="password" id="codigo" placeholder="Código único">  
       <input type="tel" id="telefono" placeholder="Número de teléfono">
       <input type="text" id="ocupacion" placeholder="Ocupación">
       <label for="foto">Foto de perfil:</label>
