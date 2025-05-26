@@ -1,58 +1,86 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
+// Configuración Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
-    authDomain: "weblafactor.firebaseapp.com",
-    projectId: "weblafactor",
-    storageBucket: "weblafactor.firebasestorage.app",
-    messagingSenderId: "690032474707",
-    appId: "1:690032474707:web:e948852878cc6b6c8ee4a6",
-    measurementId: "G-XFFS2Z77EY"
-  };
+  apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+  authDomain: "weblafactor.firebaseapp.com",
+  projectId: "weblafactor",
+  storageBucket: "weblafactor.appspot.com",
+  messagingSenderId: "690032474707",
+  appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const firestore = getFirestore(app);
-  
-  const productoform = document.getElementById("productoform");
-  const inputnombre_producto = document.getElementById("nombre_producto");
-  const inputdescripcion = document.getElementById("descripcion");
-  const inputprecio = document.getElementById("precio");
-  const inputcantidad = document.getElementById("Cantidad");
-  const inputcategoria = document.getElementById("categoria");
-  const inputimagen = document.getElementById("imagen");
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+const auth = getAuth(app);
 
-  productoform.addEventListener("submit", async function (event) {
-    event.preventDefault();
+// DOM
+const productoform = document.getElementById("productoform");
+const inputNombre = document.getElementById("nombre_producto");
+const inputDescripcion = document.getElementById("descripcion");
+const inputPrecio = document.getElementById("precio");
+const inputCantidad = document.getElementById("Cantidad");
+const inputCategoria = document.getElementById("categoria");
+const inputImagen = document.getElementById("imagen");
+const mensajeDiv = document.getElementById("mensaje");
 
-    const nombre = inputnombre_producto;
-    const descrip = inputdescripcion;
-    const pre = inputprecio;
-    const cant = inputcantidad;
-    const cate = inputcategoria;
-    const ima = inputimagen;
-
-    try {
-      await addDoc(collection(firestore, "usuarios"), {
-        nombre_producto : nombre,
-        descripcion : descrip,
-        precio : pre,
-        Cantidad: cant,
-        categoria: cate,
-
-      });
-    } catch (error) {
-      console.error("Error al agregar el producto:", error);
-    }
+// Función para convertir archivo a base64
+function convertirABase64(file) {
+  return new Promise((resolve, reject) => {
+    const lector = new FileReader();
+    lector.readAsDataURL(file);
+    lector.onload = () => resolve(lector.result); // Esto da el string base64 completo
+    lector.onerror = error => reject(error);
   });
-  
-  
+}
 
+productoform.addEventListener("submit", async function (event) {
+  event.preventDefault();
 
-// Explicacion (X, Y, Z) 
-//X hace referencia al "id" (#) del input de entrada de datos
-//inputX hace referencia al elemento "input" + el atributo id que posee
-//Y hace referencia al nombre de campo (base de datos)
-//Z hace referencia al nombre de la colección (base de datos)
+  const user = auth.currentUser;
+  if (!user) {
+    mensajeDiv.textContent = "⚠️ Debes iniciar sesión para agregar productos.";
+    mensajeDiv.style.color = "orange";
+    return;
+  }
 
+  const correo = user.email;
+  const nombre = inputNombre.value.trim();
+  const descripcion = inputDescripcion.value.trim();
+  const precio = parseFloat(inputPrecio.value);
+  const cantidad = parseInt(inputCantidad.value);
+  const categoria = inputCategoria.value.trim();
+  const archivoImagen = inputImagen.files[0];
 
+  if (!archivoImagen) {
+    mensajeDiv.textContent = "⚠️ Debes seleccionar una imagen.";
+    mensajeDiv.style.color = "orange";
+    return;
+  }
+
+  try {
+    // Convertir imagen a base64
+    const imagenBase64 = await convertirABase64(archivoImagen);
+
+    // Guardar en Firestore
+    await setDoc(doc(firestore, "usuarios", correo), {
+      nombre_producto: nombre,
+      descripcion: descripcion,
+      precio: precio,
+      cantidad: cantidad,
+      categoria: categoria,
+      imagen_base64: imagenBase64,
+      correo: correo
+    });
+
+    mensajeDiv.textContent = "✅ Producto guardado";
+    mensajeDiv.style.color = "green";
+    productoform.reset();
+  } catch (error) {
+    console.error("❌ Error al guardar producto:", error);
+    mensajeDiv.textContent = "❌ Error al guardar producto.";
+    mensajeDiv.style.color = "red";
+  }
+});

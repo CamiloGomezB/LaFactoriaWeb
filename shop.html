@@ -163,56 +163,10 @@
 <!-- 1) Productos Aleatorios (Polaroids) -->
 <section id="buying-section">
     <div class="shop-layout">
-    <!-- Vitrina de productos -->
+   
         <div class="products-container">
-            <div class="product">
-                <img src="src/WhatsApp Image 2025-05-22 at 9.39.31 PM.jpeg" alt="Máscara Indígena">
-                <h2>Máscara Indígena</h2>
-                <p>Expresion artistica y cultural que reflejan la historia y cosmovision de las comunidades del pais. Elemento de la mejor calidad y de forma artesanal.</p>
-                <p>6700</p>
-                <p>Pieza Cultural</p>
-                <button class="buy-button">Añadir al carrito</button>
-            </div>
-                    <div class="product">
-            <img src="src/WhatsApp Image 2025-05-22 at 9.39.32 PM.jpeg" alt="Lagartija de porcelana">
-            <h2>Lagartija de porcelana</h2>
-            <p>Una representación artística de un animal típico de Colombia, con sus vivos colores y formas únicas, será una decoración encantadora y un recuerdo perfecto del lugar.</p>
-            <p>8500</p>
-            <p>Pieza Cultural</p>
-            <button class="buy-button">Añadir al carrito</button>
-            </div>
-            <div class="product">
-                <img src="src/WhatsApp Image 2025-05-22 at 9.39.32 PM (1).jpeg" alt="Lagartija de porcelana">
-                <h2>Corazon de mamá</h2>
-                <p>Expresa el amor incondicional, la fuerza y la resiliencia que caracterizan a las madres colombianas. Es el regalo perfecto y, al mismo tiempo, un elemento ideal para decorar tu hogar.</p>
-                <p>13450</p>
-                <p>Articulo de uso domestico</p>
-                <button class="buy-button">Añadir al carrito</button>
-            </div>
-            <div class="product">
-                <img src="src/WhatsApp Image 2025-05-22 at 9.39.45 PM (1).jpeg" alt="Lagartija de porcelana">
-                <h2>Sobre mesa</h2>
-                <p>Hecha de forma artesanal y con técnicas refinadas para su elaboración, es el elemento que tu mesa necesita. Es un elemento esencial para conversar y compartir historias en compañía mutua y placentera.</p>
-                <p>10500</p>
-                <p>Decoración</p>
-                <button class="buy-button">Añadir al carrito</button>
-            </div>
-            <div class="product">
-                <img src="src/WhatsApp Image 2025-05-22 at 9.39.45 PM.jpeg" alt="Lagartija de porcelana">
-                <h2>mochila wuayu</h2>
-                <p>Es la máxima expresión de la cultura Wayuu. Sus tejidos, telas y colores reflejan la belleza de esta tradición. Realizada a mano con un gancho, su elaboración toma aproximadamente 20 días, buscando la perfección y el enriquecimiento que merece.</p>
-                <p>32000</p>
-                <p>Mochilas y bolsas</p>
-                <button class="buy-button">Añadir al carrito</button>
-            </div>
-            <div class="product">
-                <img src="src/WhatsApp Image 2025-05-23 at 12.52.13 PM.jpeg" alt="Buho Tejido">
-                <h2>Buho Tejido</h2>
-                <p>Hecho de manera manual con una técnica especial, se da una bella representación a todos los animales que son tan importantes para la cultura colombiana. Con colores vivos, paciencia y esfuerzo, se les brinda la representación que se merecen.</p>
-                <p>12500</p>
-                <p>Decoración</p>
-                <button class="buy-button">Añadir al carrito</button>
-            </div>
+            <!-- Aquí se inyectarán dinámicamente los productos -->
+            <p>Cargando productos...</p>
         </div>
     </div>
 
@@ -329,39 +283,68 @@
     <script src="js/carrito.js"></script>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-      
-        const firebaseConfig = {
-          apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
-          authDomain: "weblafactor.firebaseapp.com",
-          projectId: "weblafactor",
-          appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
-        };
-      
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-      
-        onAuthStateChanged(auth, (user) => {
-          const miCuenta = document.querySelector(".btn-group");
-      
-          if (user) {
-            // Si está logueado, reemplaza el menú por un botón al dashboard
-            miCuenta.innerHTML = `
-              <a href="comprador.html" class="btn btn-sm btn-light">Cuenta</a>
-              <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
-            `;
-      
-            document.getElementById("logoutBtn").addEventListener("click", () => {
-              auth.signOut().then(() => {
-                window.location.reload();
-              });
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+        authDomain: "weblafactor.firebaseapp.com",
+        projectId: "weblafactor",
+        appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+
+    // --- 1. Mostrar botones según estado de sesión
+    onAuthStateChanged(auth, (user) => {
+        const miCuenta = document.querySelector(".btn-group");
+
+        if (user) {
+        miCuenta.innerHTML = `
+            <a href="auth/comprador.html" class="btn btn-sm btn-light">Cuenta</a>
+            <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
+        `;
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            auth.signOut().then(() => {
+            window.location.reload();
             });
-      
-          } else {
-            // Si no está logueado, se muestra el menú por defecto (ya está en el HTML original)
-          }
         });
-      </script>
+        }
+    });
+
+    // --- 2. Cargar productos desde Firestore
+    const contenedor = document.querySelector(".products-container");
+    contenedor.innerHTML = "<p>Cargando productos...</p>";
+
+    async function mostrarProductos() {
+        const querySnapshot = await getDocs(collection(firestore, "usuarios"));
+        contenedor.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+        const data = doc.data();
+
+        const producto = document.createElement("div");
+        producto.classList.add("product");
+        producto.innerHTML = `
+            <img src="${data.imagen_base64 || 'img/placeholder.jpg'}" alt="${data.nombre_producto}">
+            <h2>${data.nombre_producto}</h2>
+            <p>${data.descripcion}</p>
+            <p>${data.precio}</p>
+            <p>${data.categoria}</p>
+            <button class="buy-button">Añadir al carrito</button>
+        `;
+        contenedor.appendChild(producto);
+        });
+
+        // Cargar lógica del carrito
+        import("js/carrito.js");
+    }
+
+    mostrarProductos();
+    </script>
+
 
 </body>

@@ -21,6 +21,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script type="module" src="auth/js/registro.js" ></script>
+    <script type="module" src="auth/js/firebase.js" ></script>
 </head>
 
 <body>
@@ -129,7 +131,7 @@
 
 <section id="newproducts" class="centered-section">
   <aside class="text-container">
-    <p>¡Bienvenido administrador! Usa este formulario para agregar nuevos productos a la tienda. Asegúrate de llenar todos los campos correctamente antes de enviar.</p>
+    <p>¡Bienvenido vendedor! Usa este formulario para agregar nuevos productos a la tienda. Asegúrate de llenar todos los campos correctamente antes de enviar.</p>
   </aside>
 
   <form id="productoform">
@@ -145,7 +147,7 @@
   <div id="mensaje"></div>
 </section>
 
-<script type="module" src="js/registro.js" ></script>
+
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";

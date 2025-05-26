@@ -33,7 +33,6 @@
   <div id="preloader-content">
   </div>
 </div>
-
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5"> <!-- bg-secundary=Color del background -->
@@ -466,41 +465,70 @@
     <script src="js/carrito.js"></script>
     <script src="js/main.js"></script>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-        apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
-        authDomain: "weblafactor.firebaseapp.com",
-        projectId: "weblafactor",
-        appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
-        };
+  const firebaseConfig = {
+    apiKey: "AIzaSyAscPqbFzJxZiXYo-2FCcOynMv6HJfJmaE",
+    authDomain: "weblafactor.firebaseapp.com",
+    projectId: "weblafactor",
+    appId: "1:690032474707:web:e948852878cc6b6c8ee4a6"
+  };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const firestore = getFirestore(app);
 
-        onAuthStateChanged(auth, (user) => {
-        const miCuenta = document.querySelector(".btn-group");
+  // --- 1. Mostrar botones según estado de sesión
+  onAuthStateChanged(auth, (user) => {
+    const miCuenta = document.querySelector(".btn-group");
 
-        if (user) {
-            // Si está logueado, reemplaza el menú por un botón al dashboard
-            miCuenta.innerHTML = `
-            <a href="auth/comprador.html" class="btn btn-sm btn-light">Cuenta</a>
-            <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
-            `;
-
-            document.getElementById("logoutBtn").addEventListener("click", () => {
-            auth.signOut().then(() => {
-                window.location.reload();
-            });
-            });
-
-        } else {
-            // Si no está logueado, se muestra el menú por defecto (ya está en el HTML original)
-        }
+    if (user) {
+      miCuenta.innerHTML = `
+        <a href="auth/comprador.html" class="btn btn-sm btn-light">Cuenta</a>
+        <button class="btn btn-sm btn-danger" id="logoutBtn">Cerrar sesión</button>
+      `;
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        auth.signOut().then(() => {
+          window.location.reload();
         });
-    </script>
+      });
+    }
+  });
+
+  // --- 2. Cargar productos desde Firestore
+  const contenedor = document.querySelector(".products-container");
+  contenedor.innerHTML = "<p>Cargando productos...</p>";
+
+  async function mostrarProductos() {
+    const querySnapshot = await getDocs(collection(firestore, "usuarios"));
+    contenedor.innerHTML = "";
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+
+      const producto = document.createElement("div");
+      producto.classList.add("product");
+      producto.innerHTML = `
+        <img src="${data.imagen_base64 || 'img/placeholder.jpg'}" alt="${data.nombre_producto}">
+        <h2>${data.nombre_producto}</h2>
+        <p>${data.descripcion}</p>
+        <p>${data.precio}</p>
+        <p>${data.categoria}</p>
+        <button class="buy-button">Añadir al carrito</button>
+      `;
+      contenedor.appendChild(producto);
+    });
+
+    // Cargar lógica del carrito
+    import("./js/carrito.js");
+  }
+
+  mostrarProductos();
+</script>
+
 
 </body>
 
