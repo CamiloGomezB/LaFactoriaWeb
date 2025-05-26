@@ -10225,6 +10225,9 @@ h1.rainbow-text {
   animation: rainbow-move 6s ease infinite;
   text-align: center;
 }
+.product p {
+  text-align: justify;
+}
 
 #newproducts {
     background: #1f1f1f;
